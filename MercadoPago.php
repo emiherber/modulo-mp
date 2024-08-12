@@ -2,6 +2,7 @@
 
 class MercadoPago {
   private $preference;
+  private $claveSecreta = '380e7a952a2d8a1dbdb3a6498709bdc7840827e2be5e22b2a8bff890b4d5a045';
 
   function __construct()
   {
@@ -28,7 +29,6 @@ class MercadoPago {
       $item->unit_price = $value['unit_price'];
       $item->currency_id = "ARS";
       $itemsPreference[] = $item;
-      
     }
 
     $this->preference->items= $itemsPreference;
@@ -63,5 +63,47 @@ class MercadoPago {
     return $detalle;
   }
 
+  function validarOrigenOperacion($xSignature, $xRequestId, $dataID) {
+    // Separating the x-signature into parts
+    $parts = explode(',', $xSignature);
+    $ts = null;
+    $hash = null;
+    // Iterate over the values to obtain ts and v1
+    foreach ($parts as $part) {
+      // Split each part into key and value
+      $keyValue = explode('=', $part, 2);
+      if (count($keyValue) == 2) {
+        $key = trim($keyValue[0]);
+        $value = trim($keyValue[1]);
+        if ($key === "ts") {
+          $ts = $value;
+        } elseif ($key === "v1") {
+          $hash = $value;
+        }
+      }
+    }
 
+    // Generate the manifest string
+    $manifest = "id:$dataID;request-id:$xRequestId;ts:$ts;";
+    $sha = hash_hmac('sha256', $manifest, $this->claveSecreta);
+    return $hash === $sha;
+  }
 }
+
+/*
+
+// Obtain the x-signature value from the header
+$xSignature = $_SERVER['HTTP_X_SIGNATURE'];
+$xRequestId = $_SERVER['HTTP_X_REQUEST_ID'];
+$dataID = $_GET['data_id'];
+// Separating the x-signature into parts
+$parts = explode(',', $xSignature);
+// Initializing variables to store ts and hash
+$ts = null;
+$hash = null;
+
+
+fputs($file,"$manifest \r\n");
+// Create an HMAC signature defining the hash type and the key as a byte array
+
+*/

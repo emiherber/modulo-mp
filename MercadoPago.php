@@ -11,6 +11,12 @@ class MercadoPago {
 
   function setPreference() {
     $this->preference = new MercadoPago\Preference();
+    $this->preference->auto_return = "approved";
+    $this->preference->back_urls = array(
+      "success" => "https://pet-complete-mule.ngrok-free.app",
+      "failure" => "https://pet-complete-mule.ngrok-free.app",
+      "pending" => "https://pet-complete-mule.ngrok-free.app"
+    );
     $this->preference->payment_methods = [
       "excluded_payment_types" => [
         ["id" => "ticket"],
@@ -40,13 +46,13 @@ class MercadoPago {
     return "<a href='". $this->preference->init_point ."' target='_blank'> <button>Paga con MercadoPago</button>  </a>";
   }
 
-  function getDetalleOperacion($idOperacion) {
+  function getDetalleOperacion($idOperacion, $soloAcreditados = true) {
     $detalle = ['id' => $idOperacion, 'total_paid_amount' => 0, 'net_received_amount' => 0, 'items' => []];
     $pago = MercadoPago\Payment::find_by_id($idOperacion);
-    echo '<pre>';
-    print_r($pago);
-    echo '</pre>';
-    echo "<br> ------------------------------------------: <br>";
+
+    if(isset($pago) && $soloAcreditados && $pago->status_detail != "accredited"){
+      return [];
+    } 
 
     $detalle['total_paid_amount'] = $pago->transaction_details->total_paid_amount;
     $detalle['net_received_amount'] = $pago->transaction_details->net_received_amount;
@@ -89,21 +95,3 @@ class MercadoPago {
     return $hash === $sha;
   }
 }
-
-/*
-
-// Obtain the x-signature value from the header
-$xSignature = $_SERVER['HTTP_X_SIGNATURE'];
-$xRequestId = $_SERVER['HTTP_X_REQUEST_ID'];
-$dataID = $_GET['data_id'];
-// Separating the x-signature into parts
-$parts = explode(',', $xSignature);
-// Initializing variables to store ts and hash
-$ts = null;
-$hash = null;
-
-
-fputs($file,"$manifest \r\n");
-// Create an HMAC signature defining the hash type and the key as a byte array
-
-*/

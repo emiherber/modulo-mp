@@ -78,3 +78,83 @@ HMAC verification passed
         }
     ]
 }
+-------------------------- 
+ {"action":"payment.created","api_version":"v1","data":{"id":"84765032283"},"date_created":"2024-08-12T01:45:20Z","id":115218603382,"live_mode":true,"type":"payment","user_id":"1303671046"} 
+{
+    "HTTP_HOST": "pet-complete-mule.ngrok-free.app",
+    "HTTP_USER_AGENT": "MercadoPago WebHook v1.0 payment",
+    "CONTENT_LENGTH": "188",
+    "HTTP_ACCEPT": "application\/json",
+    "HTTP_ACCEPT_ENCODING": "gzip",
+    "CONTENT_TYPE": "application\/json",
+    "HTTP_REFERER": "https:\/\/mercadopago.com.ar",
+    "HTTP_TRACEPARENT": "00-00000000000000008f063e9667d44146-cbaeb4d108857178-00",
+    "HTTP_X_B3_SAMPLED": "0",
+    "HTTP_X_B3_SPANID": "cbaeb4d108857178",
+    "HTTP_X_B3_TRACEID": "00000000000000008f063e9667d44146",
+    "HTTP_X_FORWARDED_FOR": "18.213.114.129",
+    "HTTP_X_FORWARDED_HOST": "pet-complete-mule.ngrok-free.app",
+    "HTTP_X_FORWARDED_PROTO": "https",
+    "HTTP_X_REQUEST_ID": "3fc4506d-4cf4-49fb-8cb3-0b64d826cb30",
+    "HTTP_X_REST_POOL_NAME": "pool_unknown",
+    "HTTP_X_SIGNATURE": "ts=1723379286,v1=2247bb33ba39d4f5d99a30023addb5264d3a2f72efc951741eb10cb71d397f7d",
+    "HTTP_X_SOCKET_TIMEOUT": "25000",
+    "HTTP_X_TRACE_DIGEST_95": "EiDc+3XIOeP1VYkS2pc3VSd+SFPgBYYMaVVh6BGpblpop6VteJzhoaw7kO9Fs8RY+hWohxeWA8E3DdBrmeYj2e5upcx3T8uVmM8s\/Nnw\/LYaUN21waqo4XHQmHa6CYcW",
+    "PATH": "\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin",
+    "SERVER_SIGNATURE": "<address>Apache\/2.4.54 (Debian) Server at pet-complete-mule.ngrok-free.app Port 80<\/address>\n",
+    "SERVER_SOFTWARE": "Apache\/2.4.54 (Debian)",
+    "SERVER_NAME": "pet-complete-mule.ngrok-free.app",
+    "SERVER_ADDR": "172.24.0.2",
+    "SERVER_PORT": "80",
+    "REMOTE_ADDR": "172.24.0.1",
+    "DOCUMENT_ROOT": "\/var\/www\/html",
+    "REQUEST_SCHEME": "http",
+    "CONTEXT_PREFIX": "",
+    "CONTEXT_DOCUMENT_ROOT": "\/var\/www\/html",
+    "SERVER_ADMIN": "webmaster@localhost",
+    "SCRIPT_FILENAME": "\/var\/www\/html\/Procesar-pago.php",
+    "REMOTE_PORT": "45632",
+    "GATEWAY_INTERFACE": "CGI\/1.1",
+    "SERVER_PROTOCOL": "HTTP\/1.1",
+    "REQUEST_METHOD": "POST",
+    "QUERY_STRING": "data.id=84765032283&type=payment",
+    "REQUEST_URI": "\/Procesar-pago.php?data.id=84765032283&type=payment",
+    "SCRIPT_NAME": "\/Procesar-pago.php",
+    "PHP_SELF": "\/Procesar-pago.php",
+    "REQUEST_TIME_FLOAT": 1723427121.039366,
+    "REQUEST_TIME": 1723427121,
+    "argv": [
+        "data.id=84765032283&type=payment"
+    ],
+    "argc": 1
+}
+{
+    "data_id": "84765032283",
+    "type": "payment"
+}
+HMAC verification passed 
+{
+    "id": "84765032283",
+    "total_paid_amount": 300,
+    "net_received_amount": 287.7,
+    "items": [
+        {
+            "id": "00001",
+            "title": "item1",
+            "quantity": "1",
+            "unit_price": "100"
+        },
+        {
+            "id": "00002",
+            "title": "item2",
+            "quantity": "1",
+            "unit_price": "100"
+        },
+        {
+            "id": "00003",
+            "title": "item3",
+            "quantity": "1",
+            "unit_price": "100"
+        }
+    ]
+}

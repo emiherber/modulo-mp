@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  php-apache-environment:
+    image: emiherber/php7.4-sql-server
+    container_name: modulo-mp
+    volumes:
+      - /opt/desarrollo_lambdasi/modulo-mp:/var/www/html/
+    ports:
+      - 80:80

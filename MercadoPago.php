@@ -13,7 +13,7 @@ class MercadoPago {
     $this->preference = new MercadoPago\Preference();
     $this->preference->auto_return = "approved";
     $this->preference->back_urls = array(
-      "success" => "https://pet-complete-mule.ngrok-free.app",
+      "success" => "https://pet-complete-mule.ngrok-free.app", //dominio ngrok para local
       "failure" => "https://pet-complete-mule.ngrok-free.app",
       "pending" => "https://pet-complete-mule.ngrok-free.app"
     );

@@ -2,11 +2,11 @@
 
 class MercadoPago {
   private $preference;
-  private $claveSecreta = '380e7a952a2d8a1dbdb3a6498709bdc7840827e2be5e22b2a8bff890b4d5a045';
+  private $claveSecreta = 'clave_notificacion_es_de_donde_pertenece';
 
   function __construct()
   {
-    MercadoPago\SDK::setAccessToken("APP_USR-7793416169177571-032622-345717d068044b7c1e118fad16f6a229-1303671046");
+    MercadoPago\SDK::setAccessToken("");
   }
 
   function setPreference() {
